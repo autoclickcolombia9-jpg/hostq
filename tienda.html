@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Tienda - POS</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+</head>
+<body>
+    <nav>
+        <div class="nav-brand" id="tienda-nombre">Tienda</div>
+        <div>
+            <a href="index.html" class="btn">Salir</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>Punto de Venta (POS)</h1>
+        
+        <div class="dashboard-grid">
+            <div class="glass-card">
+                <h3>Terminal de Escaneo</h3>
+                <p style="color: var(--text-muted); margin-bottom: 1rem; font-size: 0.875rem;">Escanea el código de barras o QR del mueble.</p>
+                <div id="reader" style="width: 100%; border-radius: 8px; overflow: hidden; margin-bottom: 1rem;"></div>
+                <button class="btn btn-success" id="btn-scan" onclick="toggleScanner()" style="width: 100%; justify-content: center;">Activar Cámara Escáner</button>
+                <hr style="border: 0; border-top: 1px solid var(--border); margin: 1rem 0;">
+                <p style="color: var(--text-muted); margin-bottom: 0.5rem; font-size: 0.875rem;">Ingreso Manual (SKU):</p>
+                <div class="input-group" style="display: flex; gap: 0.5rem;">
+                    <input type="text" id="manual-sku" class="input-control" placeholder="Ej: MBL-SOFA-001">
+                    <button class="btn" onclick="agregarAlCarritoManual()">Agregar</button>
+                </div>
+            </div>
+            
+            <div class="glass-card">
+                <h3>Carrito de Compras</h3>
+                <div class="table-container" style="max-height: 250px; overflow-y: auto;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Mueble</th>
+                                <th>Cant</th>
+                                <th>Total</th>
+                                <th>X</th>
+                            </tr>
+                        </thead>
+                        <tbody id="cart-body">
+                            <!-- JS -->
+                        </tbody>
+                    </table>
+                </div>
+                <hr style="border: 0; border-top: 1px solid var(--border); margin: 1rem 0;">
+                
+                <div class="input-group" style="display: flex; gap: 1rem; align-items: center;">
+                    <label style="margin:0; width: 100px;">Descuento %:</label>
+                    <input type="number" id="pos-descuento" class="input-control" value="0" min="0" max="100" onchange="actualizarTotales()">
+                </div>
+                
+                <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                    <span>Subtotal:</span>
+                    <strong id="pos-subtotal">$0.00</strong>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 1rem; color: var(--accent);">
+                    <span>Total a Pagar:</span>
+                    <strong id="pos-total" style="font-size: 1.5rem;">$0.00</strong>
+                </div>
+                <button class="btn btn-success" onclick="procesarVenta()" style="width: 100%; justify-content: center; font-size: 1.2rem; padding: 1rem;">💰 Cobrar y Registrar</button>
+            </div>
+        </div>
+
+        <div class="dashboard-grid">
+            <div class="glass-card">
+                <h2>Mi Inventario</h2>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>SKU</th>
+                                <th>Mueble</th>
+                                <th>Cantidad</th>
+                                <th>Precio</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tienda-inventario-body">
+                            <!-- Llenado por JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="glass-card">
+                <h3>Buscar en Otras Mueblerías</h3>
+                <div class="input-group" style="display: flex; gap: 0.5rem;">
+                    <input type="text" id="search-input" class="input-control" placeholder="Buscar mueble...">
+                    <button class="btn btn-success" onclick="buscarRed()">Buscar</button>
+                </div>
+                <div id="search-results" style="margin-top: 1rem;"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', initTienda);
+    </script>
+</body>
+</html>

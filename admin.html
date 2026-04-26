@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Administrativo</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav>
+        <div class="nav-brand">Sistema Central ADMIN</div>
+        <div>
+            <a href="index.html" class="btn">Salir</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>Dashboard Global</h1>
+        
+        <div class="dashboard-grid">
+            <div class="glass-card stat-card">
+                <h3>Total Inventario</h3>
+                <div class="stat-value" id="admin-total-items">0</div>
+                <p style="color: var(--text-muted);">Unidades en todas las sucursales</p>
+            </div>
+            <div class="glass-card stat-card">
+                <h3>Valor Inventario</h3>
+                <div class="stat-value" id="admin-total-value">$0.00</div>
+                <p style="color: var(--text-muted);">Valoración total global</p>
+            </div>
+        </div>
+
+        <div class="glass-card">
+            <h2>Inventario Global</h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Tienda</th>
+                            <th>SKU</th>
+                            <th>Producto</th>
+                            <th>Cantidad</th>
+                            <th>Valor Unitario</th>
+                        </tr>
+                    </thead>
+                    <tbody id="admin-inventario-body">
+                        <!-- Llenado por JS -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <br>
+        
+        <div class="glass-card">
+            <h2>Finanzas Recientes (Global)</h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Tienda</th>
+                            <th>Tipo</th>
+                            <th>Descripción</th>
+                            <th>Monto</th>
+                        </tr>
+                    </thead>
+                    <tbody id="admin-finanzas-body">
+                        <!-- Llenado por JS -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', loadAdminData);
+    </script>
+</body>
+</html>
