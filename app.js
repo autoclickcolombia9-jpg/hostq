@@ -128,7 +128,7 @@ async function buscarRed() {
 
         let html = '<ul style="list-style:none; padding:0;">';
         resultados.forEach(r => {
-            html += `<li style="background: rgba(255,255,255,0.05); padding: 0.75rem; border-radius: 8px; margin-bottom: 0.5rem; display: flex; justify-content: space-between;">
+            html += `<li>
                 <span><strong>${r.tienda}</strong> - ${r.producto}</span>
                 <span class="badge ${r.cantidad > 0 ? 'badge-ingreso' : 'badge-gasto'}">Stock: ${r.cantidad}</span>
             </li>`;
